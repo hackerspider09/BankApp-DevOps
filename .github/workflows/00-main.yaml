@@ -12,6 +12,7 @@ jobs:
     uses: ./.github/workflows/02-code-scan.yaml
 
   build-scan:
+    needs: [secret-scan,code-scan]
     uses: ./.github/workflows/03-build-scan.yaml
   
 
