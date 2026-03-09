@@ -1,2 +1,6 @@
+# ignore for workflow 2
 CVE-2025-24813
 CVE-2025-41232
+
+# ignore for workflow 3
+CVE-2026-22184
