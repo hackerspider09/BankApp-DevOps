@@ -1,0 +1,15 @@
+name: Main pipeline
+
+on:
+  workflow_dispatch:
+
+
+jobs:
+  secrets-scan:
+    uses: ./.github/workflows/01-secrets-scan.yaml
+
+  code-scan:
+    uses: ./.github/workflows/02-code-scan.yaml
+  
+
+
