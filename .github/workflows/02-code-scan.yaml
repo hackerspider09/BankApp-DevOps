@@ -30,11 +30,21 @@ jobs:
       - name: Build code
         run: mvn clean package -DskipTests
 
-      - name: Perform CodeQL Analysis
+      - name: Code analysis (SAST)
         uses: github/codeql-action/analyze@v4
+
+
+      - name: Dependency check (SCA)
+        uses: aquasecurity/trivy-action@0.35.0
+        with:
+          scan-type: 'fs'
+          scan-ref: '.'
+          exit-code: 1
+          severity: CRITICAL
       
       - name: debug
         run: |
           ls 
+          echo "***********************"
           ls target/*
         

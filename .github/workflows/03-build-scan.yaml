@@ -1,1 +1,36 @@
-name: 
+name: 03 Build and scan 
+
+on: 
+  workflow_call:
+    
+env:  
+  IMAGE_TAG: ${{github.sha}}
+  IMAGE_NAME: "${{vars.GITHUB_USER}}/bankapp"
+
+
+jobs:
+  build-image:
+    runs-on: 
+      - ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Build image 
+        uses: |
+          docker build -t $IMAGE_NAME:$IMAGE_TAG
+
+      - name: Scan image 
+        uses: aquasecurity/trivy-action@0.35.0
+        with:
+          scan-type: 'image'
+          image-ref: "$IMAGE_NAME:$IMAGE_TAG"
+          exit-code: '1'
+          ignore-unfixed: true
+          vuln-type: 'os,library'
+          severity: 'CRITICAL'
+
+      - name: Debug
+        run: |
+          docker images
