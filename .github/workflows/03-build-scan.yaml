@@ -5,7 +5,7 @@ on:
     
 env:  
   IMAGE_TAG: ${{github.sha}}
-  IMAGE_NAME: "${{vars.GITHUB_USER}}/bankapp"
+  IMAGE_NAME: "${{vars.DOCKER_USER}}/bankapp"
 
 
 jobs:
