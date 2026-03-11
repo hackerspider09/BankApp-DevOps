@@ -76,6 +76,12 @@ jobs:
             if ! docker info | grep -q "${{ vars.DOCKERHUB_USERNAME }}"; then
               echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ vars.DOCKERHUB_USERNAME }}" --password-stdin
             fi
+
+            cd $HOME
+
+            docker compose down || true
+            
+            docker compose up -d --pull always
             
             
             
