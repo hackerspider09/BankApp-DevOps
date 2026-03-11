@@ -64,7 +64,7 @@ jobs:
             export IMAGE_TAG=${{env.IMAGE_TAG}}
             if (docker info | grep Username | awk -F ': ' '{print $2 }' == ${{secrets.DOCKERHUB_USERNAME}}); then
             work on this
-            cd $HOME
+            cd /home/ubuntu
 
             docker compose down || true
             
