@@ -64,6 +64,7 @@ jobs:
 
       - name: ssh and deploy 
         uses: appleboy/ssh-action@v1
+        
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
@@ -73,12 +74,11 @@ jobs:
             export IMAGE_NAME=${{env.IMAGE_NAME}}
             export IMAGE_TAG=${{env.IMAGE_TAG}}
             if ! docker info | grep -q "${{ secrets.DOCKERHUB_USERNAME }}"; then
+              echo "Docker login ......."
               echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
             fi
-            cd $HOME
 
-            docker compose down || true
-            
-            docker compose up -d --pull always
+
+
             
             

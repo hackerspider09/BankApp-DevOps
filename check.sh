@@ -17,3 +17,9 @@
 if [[ 1 -eq 1 ]]; then
 echo "SDf"
 fi
+
+cd $HOME
+
+            docker compose down || true
+            
+            docker compose up -d --pull always
