@@ -16,9 +16,10 @@ services:
       start_period: 10s
 
   bankapp:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: $IMAGE_NAME:$IMAGE_TAG
+    # build:
+      # context: .
+      # dockerfile: Dockerfile
     ports:
       - "8080:8080"
 
