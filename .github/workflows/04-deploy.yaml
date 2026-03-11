@@ -73,12 +73,9 @@ jobs:
           script: |
             export IMAGE_NAME=${{env.IMAGE_NAME}}
             export IMAGE_TAG=${{env.IMAGE_TAG}}
-            if ! docker info | grep -q "${{ secrets.DOCKERHUB_USERNAME }}"; then
-              echo "Docker login ......."
-              echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
+            if ! docker info | grep -q "${{ vars.DOCKERHUB_USERNAME }}"; then
+              echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ vars.DOCKERHUB_USERNAME }}" --password-stdin
             fi
-
-
-
+            
             
             
