@@ -14,6 +14,10 @@ jobs:
   build-scan:
     needs: ["secrets-scan", "code-scan"]
     uses: ./.github/workflows/03-build-scan.yaml
+
+  deploy-ec2:
+    needs: [build-scan]
+    uses: ./.github/workflows/04-deploy.yaml
   
 
 
