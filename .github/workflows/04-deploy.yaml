@@ -31,7 +31,7 @@ jobs:
             else
               echo "Docker is not installed"
               sudo apt update
-              sudo apt install docker -y 
+              sudo apt install docker.io -y 
               sudo usermod -aG docker $USER
               sudo newgrp docker
             fi
