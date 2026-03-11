@@ -2,6 +2,9 @@ name: 00 Main pipeline
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - start
 
 
 jobs:
@@ -15,6 +18,8 @@ jobs:
     needs: ["secrets-scan", "code-scan"]
     uses: ./.github/workflows/03-build-scan.yaml
     secrets: inherit
+
+# secrets inherit as we are using reusable workflow so they should able to get secrets 
 
   deploy-ec2:
     needs: [build-scan]
