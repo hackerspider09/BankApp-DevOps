@@ -42,6 +42,11 @@ jobs:
     environment: prod
 
     steps:
+      - name: debug
+        run: | 
+          ls
+          pwd
+          
       - name: copy compose file
         uses: appleboy/scp-action@v1
         with:
