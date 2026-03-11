@@ -39,6 +39,7 @@ jobs:
   deploy-ec2:
     runs-on: ubuntu-latest
     needs: check-dependency
+    environment: prod
 
     steps:
       - name: copy compose file
