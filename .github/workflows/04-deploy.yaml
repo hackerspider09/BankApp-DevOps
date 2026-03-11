@@ -65,8 +65,9 @@ jobs:
           script: |
             export IMAGE_NAME=${{env.IMAGE_NAME}}
             export IMAGE_TAG=${{env.IMAGE_TAG}}
-            if (docker info | grep Username | awk -F ': ' '{print $2 }' == ${{secrets.DOCKERHUB_USERNAME}}); then
-            work on this
+            if ! docker info | grep -q "${{ secrets.DOCKERHUB_USERNAME }}"; then
+              echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
+            fi
             cd $HOME
 
             docker compose down || true
