@@ -1,4 +1,4 @@
-name: Main pipeline
+name: 00 Main pipeline
 
 on:
   workflow_dispatch:
