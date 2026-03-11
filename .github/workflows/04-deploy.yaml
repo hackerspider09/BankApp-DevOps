@@ -30,8 +30,9 @@ jobs:
               echo "Docker is present"
             else
               echo "Docker is not installed"
-              sudo apt update
-              sudo apt install docker.io -y 
+              sudo apt-get update
+              sudo apt-get install docker.io -y 
+              sudo apt-get install docker-compose-plugin -y
               sudo usermod -aG docker $USER
               sudo newgrp docker
             fi
