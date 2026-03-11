@@ -50,7 +50,7 @@ jobs:
           key: ${{ secrets.KEY }}
           port: ${{ secrets.PORT }}
           source: "docker-compose.yaml"
-          target: "$HOME"
+          target: "/home/ubuntu"
 
       - name: ssh and deploy 
         uses: appleboy/ssh-action@v1
@@ -64,7 +64,7 @@ jobs:
             export IMAGE_TAG=${{env.IMAGE_TAG}}
             if (docker info | grep Username | awk -F ': ' '{print $2 }' == ${{secrets.DOCKERHUB_USERNAME}}); then
             work on this
-            cd /home/ubuntu
+            cd $HOME
 
             docker compose down || true
             
