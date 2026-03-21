@@ -1,0 +1,32 @@
+kind: Deployment
+apiVersion: apps/v1
+
+metadata:
+  name: bankapp-deployment
+  namespace: bankapp
+  labels:
+    app: bankapp
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bankapp
+
+  template:
+    metadata:
+      name: bankapp-pod
+      labels:
+        app: bankapp
+    spec:
+      containers:
+        - name: bankapp-container
+          image: hackerspider09/bankapp:latest
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: bankapp-cm
+
+            - secretRef:
+                name: bankapp-sec

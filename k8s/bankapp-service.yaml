@@ -1,0 +1,19 @@
+kind: Service
+apiVersion: v1
+
+metadata:
+  name: bankapp-service
+  namespace: bankapp
+  labels:
+    app: bankapp
+
+spec:
+  selector:
+    app: bankapp
+  type: NodePort
+  ports:
+    - port: 8080
+      targetPort: 8080
+      nodePort: 30007
+
+# Now application can access from vms ip and port 30007
