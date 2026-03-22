@@ -6,11 +6,11 @@ nodes:
     image: kindest/node:v1.34.0
     extraPortMappings:
       - containerPort: 30007
-        hostPort: 30007
+        hostPort: 8000
       - containerPort: 30008
-        hostPort: 30008
+        hostPort: 8001
       - containerPort: 30009
-        hostPort: 30009
+        hostPort: 8002
 
   - role: worker
     image: kindest/node:v1.34.0
