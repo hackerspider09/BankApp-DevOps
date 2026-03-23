@@ -40,3 +40,12 @@ spec:
                 configMapKeyRef:
                   name: bankapp-cm
                   key: MYSQL_DATABASE
+
+          volumeMounts:
+            - mountPath: "/var/lib/mysql"
+              name: mysql-data
+
+      volumes:
+        - name: mysql-data
+          persistentVolumeClaim:
+            claimName: bankapp-pvc

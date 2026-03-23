@@ -1,0 +1,35 @@
+kind: PersistentVolume
+apiVersion: v1
+
+metadata:
+  name: bankapp-pv
+  labels:
+    app: mysql
+spec:
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: manual
+  hostPath:
+    path: "/mnt/data"
+
+---
+
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: bankapp-pvc
+  namespace: bankapp 
+spec:
+  #volumeName: bankapp-pv # by this can specify which pv to use or by selector
+  #selector:
+  #  matchLabels:
+  #    app: mysql
+  storageClassName: manual
+  accessModes: 
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 2Gi
+
